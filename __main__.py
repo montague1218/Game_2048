@@ -1,5 +1,23 @@
 import random
 
+instruction = '''
+The game is called '2048'.
+In the game, you are provided a 4x4 matrix, which is mostly filled with zeros.
+Otherwise, it is either 2 or 4.
+
+During the game, you can 'push' any numbers appearing in the matrix (except 0) vertically or horizontally, namely 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048.
+Visually, you can treat the matrix as a 4x4 grid, zeros as empty sapce, and non-zero powers of 2 as movable blocks.
+
+In each push, if two numbers are of the same magnitude, they will merge into one single number with the double of the original magnitude of the combining numbers along the direction of the push (e.g. 4 and 4 give 8)
+
+Your task is to combine as many numbers as possible until you get '2048'.
+You win the game if you get '2048'.
+Otherwise, if you cannot move any number and combine any two of them, you lose.
+
+Start with combining 2 and 2, which gives 4. Then 4 and 4, 8 and 8, 16 and 16, etc..
+Input direction w, a, s, d representing up, left, down, right. (Check your keyboard)
+'''
+
 direction_choice = {'w', 'a', 's', 'd'}
 generator = [2, 4]
 height, width = 4, 4
@@ -173,4 +191,5 @@ def main():
         turn += 1
 
 #print(movability(case2))
+print(instruction)
 main()
