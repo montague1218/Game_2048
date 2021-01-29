@@ -35,15 +35,26 @@ def movability(matrix):
     for i in range(width - 1):
         for j in range(height):
             n1, n2 = matrix[i][j], matrix[i + 1][j]
-            if (n1 == n2 and n1 != 0) or (n1 != n2 and ((n1 == 0 and n2 != 0)) or (n1 != 0 and n2 == 0)):
+            if n1 == n2 and n1 != 0:
                 movable.add('a')
                 movable.add('d')
+            if n1 != n2:
+                if n1 == 0 and n2 != 0:
+                    movable.add('a')
+                if n1 != 0 and n2 == 0:
+                    movable.add('d')
+                
     for j in range(height - 1):
         for i in range(width):
             n1, n2 = matrix[i][j], matrix[i][j + 1]
-            if (n1 == n2 and n1 != 0) or (n1 != n2 and ((n1 == 0 and n2 != 0)) or (n1 != 0 and n2 == 0)):
+            if n1 == n2 and n1 != 0:
                 movable.add('w')
                 movable.add('s')
+            if n1 != n2:
+                if n1 == 0 and n2 != 0:
+                    movable.add('w')
+                if n1 != 0 and n2 == 0:
+                    movable.add('s')
     return movable
 
 def zeros_in_matrix(matrix):
@@ -94,7 +105,7 @@ def move(matrix, direction):
         for j in range(width):
             column = matrix[j]
             invert = column[::-1]
-            merge_column_up(invert)
+            invert = merge_column_up(invert)
             matrix[j] = invert[::-1]
     elif direction == 'a':
         matrix = transpose_matrix(matrix)
@@ -106,7 +117,7 @@ def move(matrix, direction):
         for j in range(width):
             column = matrix[j]
             invert = column[::-1]
-            merge_column_up(invert)
+            invert = merge_column_up(invert)
             matrix[j] = invert[::-1]
         matrix = transpose_matrix(matrix)
     else:
@@ -161,5 +172,5 @@ def main():
         print_matrix(m)
         turn += 1
 
-print(movability(case2))
+#print(movability(case2))
 main()
